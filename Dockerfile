@@ -16,4 +16,4 @@ ADD . .
 RUN pip install -r requirements.txt
 
 # Define our command to be run when launching the container
-CMD gunicorn app:app --bind 0.0.0.0:$PORT --reload
+CMD gunicorn flask_predict_api:app --bind 0.0.0.0:$PORT --reload
