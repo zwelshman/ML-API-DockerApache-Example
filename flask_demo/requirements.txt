@@ -1,0 +1,6 @@
+flask
+flasgger==0.8.3
+numpy==1.14.5
+pandas 
+scikit-learn==0.23.1
+mod_wsgi==4.7.1
