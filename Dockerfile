@@ -1,17 +1,19 @@
 FROM python:3.7.5-slim
 
-# Install dependencies
+# Upgrade pip
+RUN pip install --upgrade pip
 
+## make a local directory
+RUN mkdir /app
 
-# Add our code
-ADD ./flask_demo /var/www/flask_predict_api/
-WORKDIR /var/www/flask_predict_api/
+# set "app" as the working directory from which CMD, RUN, ADD references
+WORKDIR /app
+
+# now copy all the files in this directory to /code
+ADD . .
+
+# pip install the local requirements.txt
 RUN pip install -r requirements.txt
-# Expose is NOT supported by Heroku
-# EXPOSE 5000 		
 
-# Run the image as a non-root user
-
-# Run the app.  CMD is required to run on Heroku
-# $PORT is set by Heroku			
-CMD gunicorn --bind 0.0.0.0:$PORT wsgi 
+# Define our command to be run when launching the container
+CMD gunicorn app:app --bind 0.0.0.0:$PORT --reload

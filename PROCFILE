@@ -1,1 +1,1 @@
-web: gunicorn flask_predict_api.wsgi
+web: gunicorn flask_predict_api:app --log-file=-
